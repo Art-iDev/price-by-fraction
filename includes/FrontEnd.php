@@ -15,6 +15,8 @@ class FrontEnd {
             'price' => $product->get_meta( Admin::UNITARY_PRICE_FIELD_ID ),
         ), $atts);
 
+        ob_start();
+
         wc_get_template(
             'unitary-price.php',
             [
@@ -23,6 +25,9 @@ class FrontEnd {
             '',
             trailingslashit( ARTI_FRACTION_PRICE_TEMPLATES )
         );
+
+        return ob_get_clean();
+
 
     }
 }
