@@ -18,4 +18,3 @@ Add a file "woocommerce/unitary-price.php" (regular template after the regular p
 ## Removing from product page
 
 You just have to unhook the callback `remove_action( 'woocommerce_single_product_summary', [arti_fraction_price(), 'render_template'], 15 );`.
-

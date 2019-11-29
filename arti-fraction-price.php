@@ -3,11 +3,11 @@ defined( 'ABSPATH' )
     or die( 'No script kiddies please!' );
 /**
  * Plugin Name: Price by Fraction - Art-i
- * Plugin URI: https://www.github.com/arti/price-by-fraction
+ * Plugin URI: https://github.com/Art-iDev/price-by-fraction/
  * Description: Add snippet with the unitary price of a good
  * Version: 1.0.0
  * Author: Luis Eduardo Casper Braschi
- * Author URI: http://art-idesenvolvimento.com.br
+ * Author URI: https://art-idesenvolvimento.com.br
  * Text Domain: arti-fraction-price
  * Domain Path: languages/
  * License: GPL 2.0
@@ -16,6 +16,10 @@ defined( 'ABSPATH' )
 define( 'ARTI_FRACTION_PRICE_BASENAME', plugin_basename( __FILE__ ) );
 define( 'ARTI_FRACTION_PRICE_DIR', dirname( __FILE__ ) );
 define( 'ARTI_FRACTION_PRICE_TEMPLATES', dirname( __FILE__ ) . '/templates' );
+
+add_action( 'init', function(){
+    load_plugin_textdomain( 'arti-fraction-price', null, dirname( ARTI_FRACTION_PRICE_BASENAME ) . '/languages' );
+} );
 
 add_action( 'woocommerce_init', function(){
 
