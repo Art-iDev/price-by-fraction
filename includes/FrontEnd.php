@@ -5,22 +5,26 @@ class FrontEnd {
 
     public function __construct(){
         add_shortcode( 'unitary_price', [$this, 'render_shortcode'] );
+        add_action( 'woocommerce_single_product_summary', [$this, 'render_template'], 15 );
     }
 
     public function render_shortcode( $atts ){
 
         global $product;
 
-        $args = shortcode_atts(array(
-            'price' => $product->get_meta( Admin::UNITARY_PRICE_FIELD_ID ),
-        ), $atts);
+        $args = shortcode_atts(
+            [
+                'price' => $product->get_meta( Admin::UNITARY_PRICE_FIELD_ID ),
+            ],
+            $atts
+        );
 
         ob_start();
 
         wc_get_template(
-            'unitary-price.php',
+            'unitary-price-shortcode.php',
             [
-                'price' => 75
+                'price' => $args['price']
             ],
             '',
             trailingslashit( ARTI_FRACTION_PRICE_TEMPLATES )
@@ -28,8 +32,24 @@ class FrontEnd {
 
         return ob_get_clean();
 
+    }
+
+    public function render_template(){
+
+        global $product;
+
+        if( $price = $product->get_meta( Admin::UNITARY_PRICE_FIELD_ID ) ){
+            wc_get_template(
+                'unitary-price.php',
+                [
+                    'price' => $price
+                ],
+                '',
+                trailingslashit( ARTI_FRACTION_PRICE_TEMPLATES )
+            );
+        }
 
     }
 }
 
-new FrontEnd;
+return new FrontEnd;
