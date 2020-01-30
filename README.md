@@ -4,12 +4,12 @@ Add unitary price to your product.
 
 ## Usage
 
-You just have add the price per unity in the product general tab and you are done.
+You just have to add the cost per unit in the product general tab and you are done.
 
 ## Shortcode
 
 You can display the unitary price in other areas of your product page by using the shortcode `[unitary_price]`.
-To override the price, you can use the attribeute "price" like `[unitary_price price=35]`.
+To override the price, you can use the attribute "price" like `[unitary_price price=35]`.
 
 ## Template
 
